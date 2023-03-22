@@ -117,6 +117,11 @@ void DeleteNode(Node*& Head, Node*& CurrentNode) {
     delete CurrentNode;
 }
 
+void DeleteFirstNode(Node*& Head) {
+    Head->Next->Previous = NULL;
+    Head = Head->Next;
+}
+
 int main()
 {
     Node* Head;
@@ -172,6 +177,12 @@ int main()
     //Delete Node
     Node* CurrentNode = Find(Head, 12);
     DeleteNode(Head, CurrentNode);
+    PrintList(Head);
+    PrintListDetails(Head);
+
+
+    //Delete First Node
+    DeleteFirstNode(Head);
     PrintList(Head);
     PrintListDetails(Head);
 }
