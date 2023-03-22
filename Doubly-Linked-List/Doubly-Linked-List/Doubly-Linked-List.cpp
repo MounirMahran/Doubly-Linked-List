@@ -104,6 +104,19 @@ void InsertAtEnd(Node*& Head, int Value) {
 
 }
 
+void DeleteNode(Node*& Head, Node*& CurrentNode) {
+
+    if (Head == NULL || CurrentNode == NULL) return;
+
+    if (Head == CurrentNode) Head = CurrentNode->Next;
+
+    if (CurrentNode->Next != NULL) CurrentNode->Next->Previous = CurrentNode->Previous;
+
+    if (CurrentNode->Previous != NULL) CurrentNode->Previous->Next = CurrentNode->Next;
+
+    delete CurrentNode;
+}
+
 int main()
 {
     Node* Head;
@@ -153,6 +166,12 @@ int main()
 
     //Insert At End
     InsertAtEnd(Head, 10);
+    PrintList(Head);
+    PrintListDetails(Head);
+
+    //Delete Node
+    Node* CurrentNode = Find(Head, 12);
+    DeleteNode(Head, CurrentNode);
     PrintList(Head);
     PrintListDetails(Head);
 }
