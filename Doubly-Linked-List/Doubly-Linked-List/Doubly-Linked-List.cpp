@@ -62,6 +62,15 @@ void PrintList(Node* Head)
 
 }
 
+Node* Find(Node* Head, int Value) {
+    while (Head != NULL) {
+        if (Head->Value == Value) return Head;
+
+        Head = Head->Next;
+    }
+    return NULL;
+}
+
 int main()
 {
     Node* Head;
@@ -87,13 +96,20 @@ int main()
     Node3->Next = NULL;
     Node3->Previous = Node2;
 
-   
-
-    //Printing list
     Head = Node1;
 
+    //Insert A Node At Beginging
+   
     InsertAtBegining(Head, 12);
 
     PrintList(Head);
-    PrintListDetails(Head);
+    
+
+    //Find A Node
+
+    Node* NewNode = Find(Head, 2);
+
+    if (NewNode != NULL) cout << "\nNode Found :-)" << endl;
+    else cout << "\nNode Is Not Found :-(" << endl; 
+
 }
