@@ -122,6 +122,22 @@ void DeleteFirstNode(Node*& Head) {
     Head = Head->Next;
 }
 
+void DeleteLastNode(Node*& Head) {
+    if (Head == NULL) return;
+
+    if (Head->Next == NULL) {
+        delete Head;
+        return;
+    }
+
+    Node* Current = Head;
+    while (Current->Next != NULL) {
+        Current = Current->Next;
+    }
+    Current->Previous->Next = NULL;
+    delete Current;
+}
+
 int main()
 {
     Node* Head;
@@ -150,39 +166,45 @@ int main()
     Head = Node1;
 
     //Insert A Node At Beginging
-   
     InsertAtBegining(Head, 12);
-
     PrintList(Head);
-    
+    cout << "\n" << endl;
 
     //Find A Node
-
     Node* NewNode = Find(Head, 2);
-
     if (NewNode != NULL) cout << "\nNode Found :-)" << endl;
     else cout << "\nNode Is Not Found :-(" << endl; 
+    cout << "\n" << endl;
 
     //Insert After A Node
-
     InsertAfter(Find(Head, 2), 12);
     PrintList(Head);
     PrintListDetails(Head);
+    cout << "\n" << endl;
 
     //Insert At End
     InsertAtEnd(Head, 10);
     PrintList(Head);
     PrintListDetails(Head);
+    cout << "\n" << endl;
 
     //Delete Node
     Node* CurrentNode = Find(Head, 12);
     DeleteNode(Head, CurrentNode);
     PrintList(Head);
     PrintListDetails(Head);
-
+    cout << "\n" << endl;
 
     //Delete First Node
     DeleteFirstNode(Head);
     PrintList(Head);
     PrintListDetails(Head);
+    cout << "\n" << endl;
+
+    //Delete Last Node
+    DeleteLastNode(Head);
+    PrintList(Head);
+    PrintListDetails(Head);    
+    cout << "\n" << endl;
+
 }
