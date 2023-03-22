@@ -81,6 +81,29 @@ void InsertAfter(Node* CurrentNode, int Value) {
     CurrentNode->Next = NewNode;
 }
 
+void InsertAtEnd(Node*& Head, int Value) {
+    Node* NewNode = new Node();
+
+    NewNode->Next = NULL;
+    NewNode->Value = Value;
+
+    if (Head == NULL) {
+        NewNode->Previous = NULL;
+        Head = NewNode;
+    }
+    else {
+        Node* Current = Head;
+
+        while (Current->Next != NULL) {
+            Current = Current->Next;
+        }
+
+        NewNode->Previous = Current;
+        Current->Next = NewNode;
+    }
+
+}
+
 int main()
 {
     Node* Head;
@@ -125,6 +148,11 @@ int main()
     //Insert After A Node
 
     InsertAfter(Find(Head, 2), 12);
+    PrintList(Head);
+    PrintListDetails(Head);
+
+    //Insert At End
+    InsertAtEnd(Head, 10);
     PrintList(Head);
     PrintListDetails(Head);
 }
